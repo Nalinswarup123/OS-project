@@ -1,4 +1,4 @@
-//The program runs for n number of students for INFINITE no of times 
+//The program runs for n number of students for many no of times 
 //as a student after clearing his doubt can return to seek help for next doubt
 #include <stdio.h>
 #include <string.h> 
@@ -41,7 +41,8 @@ void* student(void* stID)
 				p++;
 			}
 			printf("total waiting students :%d\n",p);
-			
+			if(p==0)
+			exit(0);
 			pthread_mutex_unlock(&mutex);
 			sem_post(&semS);
 			sem_wait(&semTA);
@@ -78,6 +79,7 @@ void* teacher()
 		if(chair[0]==0 && chair[1]==0 && chair[2]==0)
 		{
 			printf("TA returns to nap\n");
+			exit(0);
 		}
 		
 		pthread_mutex_unlock(&mutex);
